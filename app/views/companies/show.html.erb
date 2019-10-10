@@ -3,6 +3,11 @@
 <p>
   <strong>Name:</strong>
   <%= @company.name %>
+
+  <% @company.company_images.each do |company_image | %>
+    <%= image_tag (company_image.logo.url), class: 'logo-img-lg m-2' %>
+  <% end %>
+
 </p>
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
