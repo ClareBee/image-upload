@@ -1,0 +1,9 @@
+<%= form_with model: @image, url: images_path, local: true, html: { autocomplete: 'off' } do |f| %>
+
+  <div class="form-group">
+    <%= f.label :filename %>
+    <%= f.file_field :filename, required: true %>
+  </div>
+
+  <%= f.submit 'Upload', class: 'btn btn-primary float-right' %>
+<% end %>
