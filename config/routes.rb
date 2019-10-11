@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'home', to: 'home#index'
+
+  root 'home#index'
   resources :departments
   resources :company_images
   resources :images
