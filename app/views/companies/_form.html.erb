@@ -2,7 +2,6 @@
   <% if company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
-
       <ul>
         <% company.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -20,12 +19,19 @@
     <%= form.fields_for :company_images do |ff| %>
       <%= ff.hidden_field :id %>
       <% if ff.object.new_record? %>
-        <%= ff.label :logo %>
+        <%= ff.label 'Logo (optional)' %>
         <%= ff.file_field :logo %>
+        <p>
+          <small>Recommended image size is 132px x 83px. Accepted file types are JPG, JPEG, & PNG.</small>
+        </p>
+        <%= ff.label 'Small logo?' %>
+        <%= ff.check_box :small_logo %>
+        <hr />
       <% else %>
-        <%= ff.label :_destroy %>
-        <%= image_tag(ff.object.logo.url) if ff.object.logo.url.present? %>
+        <%= image_tag(ff.object.logo.url, style: 'display: block') if ff.object.logo.url.present? %>
+        <%= ff.label 'Delete logo' %>
         <%= ff.check_box :_destroy %>
+        <hr />
       <% end %>
     <% end %>
   </div>

@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_10_10_161404) do
   end
 
   create_table "company_images", force: :cascade do |t|
-    t.string "small_logo"
+    t.boolean "small_logo", default: false, null: false
     t.string "logo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

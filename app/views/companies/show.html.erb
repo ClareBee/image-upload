@@ -3,12 +3,15 @@
 <p>
   <strong>Name:</strong>
   <%= @company.name %>
+</p>
 
   <% @company.company_images.each do |company_image | %>
-    <%= image_tag (company_image.logo.url), class: 'logo-img-lg m-2' if company_image.logo.url.present? %>
+    <%= image_tag (company_image.logo.url), style: 'display: block' if company_image.logo.url.present? %>
+    <p>
+      <strong>Small Logo: </strong>
+      <%= company_image.small_logo? %>
+    </p>
   <% end %>
-
-</p>
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>
