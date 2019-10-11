@@ -7,7 +7,7 @@
 
   <% @company.company_images.each do |company_image | %>
     <% if company_image.logo.url.present? %>
-      <%= image_tag (company_image.logo.url), style: 'display: block' %>
+      <%= image_tag (company_image.logo.url) %>
       <p>
         <strong>Small Logo: </strong>
         <%= company_image.small_logo? %>

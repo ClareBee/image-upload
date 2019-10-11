@@ -1,2 +1,0 @@
-module CompanyImagesHelper
-end

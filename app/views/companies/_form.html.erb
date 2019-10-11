@@ -28,7 +28,7 @@
         <%= ff.check_box :small_logo %>
         <hr />
       <% elsif ff.object.logo.url.present?%>
-        <%= image_tag(ff.object.logo.url, style: 'display: block') %>
+        <%= image_tag(ff.object.logo.url) %>
         <%= ff.label 'Delete logo' %>
         <%= ff.check_box :_destroy %>
         <hr />
