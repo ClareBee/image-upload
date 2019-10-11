@@ -17,17 +17,14 @@
   </div>
 
   <div class="field">
-  <% company.company_images.each do |company_image| %>
-      <% if company_image.logo.present? %>
-        <%= image_tag(company_image.logo.url) if !company_image.logo.staged %>
-      <% end %>
-  <% end %>
     <%= form.fields_for :company_images do |ff| %>
       <%= ff.hidden_field :id %>
-      <%= ff.label :logo %>
-      <%= ff.file_field :logo %>
-      <% unless ff.object.new_record? %>
+      <% if ff.object.new_record? %>
+        <%= ff.label :logo %>
+        <%= ff.file_field :logo %>
+      <% else %>
         <%= ff.label :_destroy %>
+        <%= image_tag(ff.object.logo.url) if ff.object.logo.url.present? %>
         <%= ff.check_box :_destroy %>
       <% end %>
     <% end %>
