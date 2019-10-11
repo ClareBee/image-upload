@@ -3,5 +3,5 @@
 <%= image_tag (@image.filename.url), class: 'logo-img-lg m-2' %>
 <span><%= @image.filename_identifier %></span>
 
-<%= link_to 'Edit', edit_image_path(@image) %> |
-<%= link_to 'Back', images_path %>
+<%= link_to 'Edit', edit_image_path(@image), class: 'btn btn-outline-warning m-2' %> |
+<%= link_to 'Back', images_path, class: 'btn btn-outline-secondary m-2' %>

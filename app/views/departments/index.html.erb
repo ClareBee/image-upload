@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Departments</h1>
-<%= link_to 'New Department', new_department_path %>
+<%= link_to 'New Department', new_department_path, class: 'btn btn-outline-info m-2' %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -16,12 +16,14 @@
       <tr>
         <td><%= department.name %></td>
         <td><% department.images.each do |image| %>
-          <%= image_tag(image.url) %>
+          <%= image_tag(image.url, class: 'rounded m-2') %>
           <% end %>
         </td>
-        <td><%= link_to 'Show', department %></td>
-        <td><%= link_to 'Edit', edit_department_path(department) %></td>
-        <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="d-flex justify-content-end">
+          <%= link_to 'Show', department, class: 'btn btn-outline-dark m-2' %>
+          <%= link_to 'Edit', edit_department_path(department), class: 'btn btn-outline-warning m-2' %>
+          <%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger m-2' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
