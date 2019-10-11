@@ -6,11 +6,13 @@
 </p>
 
   <% @company.company_images.each do |company_image | %>
-    <%= image_tag (company_image.logo.url), style: 'display: block' if company_image.logo.url.present? %>
-    <p>
-      <strong>Small Logo: </strong>
-      <%= company_image.small_logo? %>
-    </p>
+    <% if company_image.logo.url.present? %>
+      <%= image_tag (company_image.logo.url), style: 'display: block' %>
+      <p>
+        <strong>Small Logo: </strong>
+        <%= company_image.small_logo? %>
+      </p>
+    <% end %>
   <% end %>
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
