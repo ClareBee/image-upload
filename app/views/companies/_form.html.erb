@@ -1,4 +1,4 @@
-<%= form_with(model: company, local: true) do |form| %>
+<%= form_with model: company, local: true, html: { multipart: true } do |form| %>
   <% if company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
@@ -17,10 +17,19 @@
   </div>
 
   <div class="field">
-  <p>wtf</p>
+  <% company.company_images.each do |company_image| %>
+      <% if company_image.logo.present? %>
+        <%= image_tag(company_image.logo.url) if !company_image.logo.staged %>
+      <% end %>
+  <% end %>
     <%= form.fields_for :company_images do |ff| %>
+      <%= ff.hidden_field :id %>
       <%= ff.label :logo %>
-      <%= ff.file_field :logo, required: true %>
+      <%= ff.file_field :logo %>
+      <% unless ff.object.new_record? %>
+        <%= ff.label :_destroy %>
+        <%= ff.check_box :_destroy %>
+      <% end %>
     <% end %>
   </div>
 

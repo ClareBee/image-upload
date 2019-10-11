@@ -5,7 +5,7 @@
   <%= @company.name %>
 
   <% @company.company_images.each do |company_image | %>
-    <%= image_tag (company_image.logo.url), class: 'logo-img-lg m-2' %>
+    <%= image_tag (company_image.logo.url), class: 'logo-img-lg m-2' if company_image.logo.url.present? %>
   <% end %>
 
 </p>

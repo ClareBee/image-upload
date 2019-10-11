@@ -20,18 +20,19 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
+    @company.company_images.build
   end
 
   # POST /companies
   # POST /companies.json
   def create
     @company = Company.new(company_params)
-    @company.company_images.build(company_params[:company_images_attributes]['0'])
     respond_to do |format|
       if @company.save
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
+        @company.company_images.build if company_params['company_images_attributes'].nil?
         format.html { render :new }
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
@@ -70,6 +71,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, company_images_attributes: [:logo])
+      params.require(:company).permit(:name, company_images_attributes: [:id, :logo, :_destroy])
     end
 end
